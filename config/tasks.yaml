@@ -1,12 +1,11 @@
 market_research:
   description: >
-    Conduct market research to identify trends, opportunities, and challenges in the industry. Focus on understanding customer needs, competitor strategies, and market dynamics to inform marketing decisions.
+    Conduct market research to identify the current trends, opportunities, and challenges in the industry. Focus on understanding customer needs, competitor strategies, and market dynamics to inform marketing decisions.
+
     <Product Name>{product_name}</Product Name>
     <Product Description>{product_description}</Product Description>
     <Target Audience>{target_audience}</Target Audience>
     <Budget>{budget}</Budget>
-
-    Current date: {current_date}
 
   expected_output: >
     A comprehensive market research report that includes:
@@ -15,6 +14,10 @@ market_research:
     - Customer insights and needs
     - Recommendations for marketing strategies
 
+  agent: head_of_marketing
+  output_file: 'resources/drafts/Market Research Report: {product_name}.md'
+
+
 prepare_marketing_strategy:
   description: >
     Develop a marketing strategy that aligns with the company's goals and objectives. The strategy should include target audience segmentation, positioning, messaging, and marketing channels.
@@ -22,8 +25,7 @@ prepare_marketing_strategy:
     <Product Description>{product_description}</Product Description>
     <Target Audience>{target_audience}</Target Audience>
 
-    Current date: {current_date}
-    Refer to the market research report for insights and building the strategy.
+    # Refer to the market research report for insights and building the strategy.
 
   expected_output: >
     A detailed marketing strategy document that includes:
@@ -32,7 +34,10 @@ prepare_marketing_strategy:
     - Recommended marketing channels
     - Plan of action for the week containing 3 blogs to write, 2 reels to film, and 5 social media posts to create
     - Key performance indicators (KPIs) to measure success
-    Save the marketing strategy in 'resources/drafts/marketing_strategy_{product_name}.md'.
+
+  agent: head_of_marketing
+  context: [market_research]
+  output_file: 'resources/drafts/Marketing Strategy: {product_name}.md'
 
 create_content_calendar:
   description: >
@@ -41,8 +46,6 @@ create_content_calendar:
     <Product Description>{product_description}</Product Description>
     <Target Audience>{target_audience}</Target Audience>
 
-    Current date: {current_date}
-
   expected_output: >
     A content calendar that includes:
     - Topics and formats for each piece of content specified in the marketing strategy
@@ -50,14 +53,16 @@ create_content_calendar:
     - Key themes and campaigns
     Save the content calendar in 'resources/drafts/content_calendar_{product_name}.md'
 
+  agent: content_creator_social_media
+  context: [prepare_marketing_strategy]
+  output_file: 'resources/drafts/Content Calendar: {product_name}.md'
+
 prepare_post_drafts:
   description: >
     Prepare drafts for social media posts and email campaigns based on the content calendar. Ensure that the drafts are engaging, aligned with the brand voice, and optimized for each platform.
     <Product Name>{product_name}</Product Name>
     <Product Description>{product_description}</Product Description>
     <Target Audience>{target_audience}</Target Audience>
-
-    Current date: {current_date}
 
   expected_output: >
     Drafts for:
@@ -68,9 +73,12 @@ prepare_post_drafts:
     platform_topic.md
 
     Examples:
-    - linkedin_{product_name}.md
-    - twitter_{product_name}.md
-    - instagram_{product_name}.md
+    - 'Linkedin: {product_name}.md'
+    - 'Twitter: {product_name}.md'
+    - 'Instagram {product_name}.md
+
+  agent: content_creator_social_media
+  context: [create_content_calendar]
 
 prepare_scripts_for_reels:
   description: >
@@ -79,8 +87,6 @@ prepare_scripts_for_reels:
     <Product Description>{product_description}</Product Description>
     <Target Audience>{target_audience}</Target Audience>
 
-    Current date: {current_date}
-
   expected_output: >
     Scripts for Instagram reels that include:
     - Engaging hooks
@@ -88,7 +94,11 @@ prepare_scripts_for_reels:
     - Call to action
     Each script should be ready for filming and editing. Save the scripts in 'resources/drafts/reels/' folder in markdown like ".md" format. And assign tasks to the relevant team members.
     File naming convention:
-    reel_{product_name}.md
+    Reel_{product_name}.md
+
+  agent: content_creator_social_media
+  context: [create_content_calendar, prepare_marketing_strategy]
+  
 
 
 content_research_for_blogs:
@@ -98,8 +108,6 @@ content_research_for_blogs:
     <Product Description>{product_description}</Product Description>
     <Target Audience>{target_audience}</Target Audience>
 
-    Current date: {current_date}
-
   expected_output: >
     A research report that includes:
     - Keyword analysis
@@ -107,14 +115,16 @@ content_research_for_blogs:
     - Industry trends
     - Suggested blog topics and outlines
 
+  agent: content_writer_blogs
+  context: [create_content_calendar, prepare_marketing_strategy]
+  output_file: 'resources/drafts/blogs/Content Blog Research Report: {product_name}'
+
 draft_blogs:
   description: >
-    Draft blogs based on the research report and content calendar. Each blog should be well-structured, engaging, and optimized for SEO.
+    Draft a list of blogs based on the research report and content calendar. Each blog should be well-structured, engaging, and optimized for SEO.
     <Product Name>{product_name}</Product Name>
     <Product Description>{product_description}</Product Description>
     <Target Audience>{target_audience}</Target Audience>
-
-    Current date: {current_date}
 
   expected_output: >
     Drafts for blogs that include:
@@ -124,7 +134,10 @@ draft_blogs:
     - Ready for review and feedback
     Each draft should be ready for review and save in 'resources/drafts/blogs/' folder in markdown like ".md" format.
     File naming convention:
-    blog_{product_name}.md
+    'Blog Title: {product_name}.md'
+
+  agent: content_writer_blogs
+  context: [content_research_for_blogs, create_content_calendar]
 
 seo_optimization:
   description: >
@@ -132,8 +145,6 @@ seo_optimization:
     <Product Name>{product_name}</Product Name>
     <Product Description>{product_description}</Product Description>
     <Target Audience>{target_audience}</Target Audience>
-
-    Current date: {current_date}
 
   expected_output: >
     SEO-optimized blogs that include:
@@ -143,4 +154,7 @@ seo_optimization:
     - Ready for final review and publication
     Save the SEO-optimized in 'resources/drafts/' folder in markdown like ".md" format.
     File naming convention:
-    seo_blog_{product_name}.md
+    '[SEO] Blog Title: {product_name}.md'
+
+  agent: seo_specialist
+  context: [draft_blogs]
